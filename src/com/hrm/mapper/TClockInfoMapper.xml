@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hrm.mapper.TClockInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hrm.pojo.TClockInfo" >
+    <id column="clock_id" property="clockId" jdbcType="INTEGER" />
+    <result column="employee_no" property="employeeNo" jdbcType="VARCHAR" />
+    <result column="clock_in_time" property="clockInTime" jdbcType="TIMESTAMP" />
+    <result column="clock_off_time" property="clockOffTime" jdbcType="TIMESTAMP" />
+    <result column="clock_date" property="clockDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    clock_id, employee_no, clock_in_time, clock_off_time, clock_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hrm.pojo.TClockInfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_clock_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_clock_info
+    where clock_id = #{clockId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_clock_info
+    where clock_id = #{clockId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hrm.pojo.TClockInfoExample" >
+    delete from t_clock_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hrm.pojo.TClockInfo" >
+    insert into t_clock_info (clock_id, employee_no, clock_in_time, 
+      clock_off_time, clock_date)
+    values (#{clockId,jdbcType=INTEGER}, #{employeeNo,jdbcType=VARCHAR}, #{clockInTime,jdbcType=TIMESTAMP}, 
+      #{clockOffTime,jdbcType=TIMESTAMP}, #{clockDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrm.pojo.TClockInfo" >
+    insert into t_clock_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clockId != null" >
+        clock_id,
+      </if>
+      <if test="employeeNo != null" >
+        employee_no,
+      </if>
+      <if test="clockInTime != null" >
+        clock_in_time,
+      </if>
+      <if test="clockOffTime != null" >
+        clock_off_time,
+      </if>
+      <if test="clockDate != null" >
+        clock_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clockId != null" >
+        #{clockId,jdbcType=INTEGER},
+      </if>
+      <if test="employeeNo != null" >
+        #{employeeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clockInTime != null" >
+        #{clockInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clockOffTime != null" >
+        #{clockOffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clockDate != null" >
+        #{clockDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hrm.pojo.TClockInfoExample" resultType="java.lang.Integer" >
+    select count(*) from t_clock_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_clock_info
+    <set >
+      <if test="record.clockId != null" >
+        clock_id = #{record.clockId,jdbcType=INTEGER},
+      </if>
+      <if test="record.employeeNo != null" >
+        employee_no = #{record.employeeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.clockInTime != null" >
+        clock_in_time = #{record.clockInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clockOffTime != null" >
+        clock_off_time = #{record.clockOffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.clockDate != null" >
+        clock_date = #{record.clockDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_clock_info
+    set clock_id = #{record.clockId,jdbcType=INTEGER},
+      employee_no = #{record.employeeNo,jdbcType=VARCHAR},
+      clock_in_time = #{record.clockInTime,jdbcType=TIMESTAMP},
+      clock_off_time = #{record.clockOffTime,jdbcType=TIMESTAMP},
+      clock_date = #{record.clockDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrm.pojo.TClockInfo" >
+    update t_clock_info
+    <set >
+      <if test="employeeNo != null" >
+        employee_no = #{employeeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="clockInTime != null" >
+        clock_in_time = #{clockInTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clockOffTime != null" >
+        clock_off_time = #{clockOffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="clockDate != null" >
+        clock_date = #{clockDate,jdbcType=DATE},
+      </if>
+    </set>
+    where clock_id = #{clockId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrm.pojo.TClockInfo" >
+    update t_clock_info
+    set employee_no = #{employeeNo,jdbcType=VARCHAR},
+      clock_in_time = #{clockInTime,jdbcType=TIMESTAMP},
+      clock_off_time = #{clockOffTime,jdbcType=TIMESTAMP},
+      clock_date = #{clockDate,jdbcType=DATE}
+    where clock_id = #{clockId,jdbcType=INTEGER}
+  </update>
+</mapper>

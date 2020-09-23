@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hrm.mapper.TWorkDateMapper" >
+  <resultMap id="BaseResultMap" type="com.hrm.pojo.TWorkDate" >
+    <id column="work_date_id" property="workDateId" jdbcType="INTEGER" />
+    <result column="work_date" property="workDate" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    work_date_id, work_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hrm.pojo.TWorkDateExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_work_date
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_work_date
+    where work_date_id = #{workDateId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_work_date
+    where work_date_id = #{workDateId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hrm.pojo.TWorkDateExample" >
+    delete from t_work_date
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hrm.pojo.TWorkDate" >
+    insert into t_work_date (work_date_id, work_date)
+    values (#{workDateId,jdbcType=INTEGER}, #{workDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hrm.pojo.TWorkDate" >
+    insert into t_work_date
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="workDateId != null" >
+        work_date_id,
+      </if>
+      <if test="workDate != null" >
+        work_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="workDateId != null" >
+        #{workDateId,jdbcType=INTEGER},
+      </if>
+      <if test="workDate != null" >
+        #{workDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hrm.pojo.TWorkDateExample" resultType="java.lang.Integer" >
+    select count(*) from t_work_date
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_work_date
+    <set >
+      <if test="record.workDateId != null" >
+        work_date_id = #{record.workDateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.workDate != null" >
+        work_date = #{record.workDate,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_work_date
+    set work_date_id = #{record.workDateId,jdbcType=INTEGER},
+      work_date = #{record.workDate,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hrm.pojo.TWorkDate" >
+    update t_work_date
+    <set >
+      <if test="workDate != null" >
+        work_date = #{workDate,jdbcType=DATE},
+      </if>
+    </set>
+    where work_date_id = #{workDateId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hrm.pojo.TWorkDate" >
+    update t_work_date
+    set work_date = #{workDate,jdbcType=DATE}
+    where work_date_id = #{workDateId,jdbcType=INTEGER}
+  </update>
+</mapper>

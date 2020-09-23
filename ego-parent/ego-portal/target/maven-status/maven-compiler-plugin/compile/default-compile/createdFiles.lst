@@ -1,0 +1,4 @@
+com\ego\protal\service\TbContentService.class
+com\ego\protal\controller\TbContentController.class
+com\ego\protal\controller\PageController.class
+com\ego\protal\service\impl\TbContentServiceImpl.class

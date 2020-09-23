@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="ego-manage">
+    <output-path>$PROJECT_DIR$/out/artifacts/ego_manage</output-path>
+    <root id="root">
+      <element id="archive" name="ego_manage.jar">
+        <element id="module-output" name="ego-manage" />
+      </element>
+    </root>
+  </artifact>
+</component>

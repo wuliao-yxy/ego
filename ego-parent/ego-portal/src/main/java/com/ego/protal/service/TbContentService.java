@@ -1,0 +1,9 @@
+package com.ego.protal.service;
+
+public interface TbContentService {
+    /**
+     * 显示大广告
+     * @return
+     */
+    String showBigPic();
+}
