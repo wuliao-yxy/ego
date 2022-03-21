@@ -25,7 +25,7 @@
     </modules>
 
     <properties>
-        <dubbo-version>2.5.3</dubbo-version>
+        <dubbo-version>2.6.9</dubbo-version>
         <zkClient-version>0.10</zkClient-version>
         <servlet-version>3.0.1</servlet-version>
         <jsp-version>2.2</jsp-version>
