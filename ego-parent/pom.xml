@@ -44,7 +44,7 @@
         <solrj-version>5.3.1</solrj-version>
         <httpclient-version>4.4.1</httpclient-version>
         <myredis-version>0.0.1-SNAPSHOT</myredis-version>
-        <ftpclient-version>3.3</ftpclient-version>
+        <ftpclient-version>3.9.0</ftpclient-version>
     </properties>
     <dependencyManagement>
         <dependencies>
